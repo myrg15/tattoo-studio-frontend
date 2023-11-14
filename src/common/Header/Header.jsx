@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 const drawerWidth = 240;
 const navItems = ['Home', 'Login', 'Register'];
 
-const Header = (props) => {
+export const Header = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -91,5 +91,3 @@ const Header = (props) => {
   );
 }
 
-
-export default Header;
