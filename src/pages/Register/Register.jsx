@@ -32,8 +32,8 @@ const Register = () => {
         return;
       }
     }
-    console.log("hola");
-  };
+    //console.log("hola");
+    };
 
   return (
     <Box
@@ -42,8 +42,8 @@ const Register = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Box component="form" onSubmit={onSubmit} width="300px">
-        <Typography variant="h5">Register</Typography>
+      <Box component="form" onSubmit={onSubmit} width="200px">
+        <Typography variant="h5" textAlign= "center" marginBottom="20px">Register</Typography>
         <InputController
           label="User"
           name="userName"
@@ -68,8 +68,8 @@ const Register = () => {
           error={userError.phone ? userError.phone : ""}
           functionBlur={errorCheck}
         />
-        <Button type="submit" variant="contained">
-          Register
+        <Button type="submit" variant="contained" fullWidth>
+          Submit
         </Button>
       </Box>
     </Box>

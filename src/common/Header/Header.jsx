@@ -26,7 +26,7 @@ const Header = () => {
       alignItems="center"
       gap="15px"
       p="10px"
-      sx={{ height: "60px", bgcolor: "red" }}
+      sx={{ height: "60px", bgcolor: "blue" }}
     >
       {navItems.map((item) => {
         return (

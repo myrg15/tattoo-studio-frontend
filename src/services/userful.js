@@ -11,7 +11,7 @@ export const validator = (type, value) => {
         
         case 'userName':
             if(value.length < 2){
-                return "Escribe un nombre correcto"
+                return "type a correct name"
             } else {
                 return ""
             }
