@@ -2,8 +2,14 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import InputController from "../../common/Inputs/InputController";
 import { validator } from "../../services/userful";
+import axiosInstance from "../../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+
+
+  const navigate = useNavigate()
+
   const [userError, setUserError] = useState({
     userName: "",
     email: "",
@@ -19,21 +25,35 @@ const Register = () => {
         ...prevState,
         [e.target.name]: error,
       };
-  
+
       return newState;
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    for(let test in userError){
-      if(userError[test] !== ""){
+    for (let test in userError) {
+      if (userError[test] !== "") {
         return;
       }
     }
     //console.log("hola");
-    };
+    const data = {
+      username : e.target.userName.value,
+      email : e.target.email.value,
+      password : e.target.password.value,
+      phone: e.target.phone.value
+    }
+
+    try{
+      const res = await axiosInstance.post('/users/register', data)
+      navigate('/login')
+    }catch(error){
+      console.log(error)
+    }
+
+  };
 
   return (
     <Box
@@ -43,7 +63,9 @@ const Register = () => {
       alignItems="center"
     >
       <Box component="form" onSubmit={onSubmit} width="200px">
-        <Typography variant="h5" textAlign= "center" marginBottom="20px">Register</Typography>
+        <Typography variant="h5" textAlign="center" marginBottom="20px">
+          Register
+        </Typography>
         <InputController
           label="User"
           name="userName"
@@ -59,6 +81,7 @@ const Register = () => {
         <InputController
           label="Password"
           name="password"
+          type="password"
           error={userError.password ? userError.password : ""}
           functionBlur={errorCheck}
         />
