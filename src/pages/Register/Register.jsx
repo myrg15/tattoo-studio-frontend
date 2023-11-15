@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
-
   const navigate = useNavigate()
 
   const [userError, setUserError] = useState({
@@ -38,7 +37,7 @@ const Register = () => {
         return;
       }
     }
-    //console.log("hola");
+  
     const data = {
       username : e.target.userName.value,
       email : e.target.email.value,
