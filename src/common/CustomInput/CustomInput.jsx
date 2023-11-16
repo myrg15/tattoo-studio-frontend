@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Button, Typography, TextField } from "@mui/material"
-import InputController from "../../common/Inputs/InputController"
+//import InputController from "../../common/Inputs/InputController"
 
 export const CustomInput = ({disabled, design, type, name, placeholder, value, functionProp, functionBlur}) => {
      return (
