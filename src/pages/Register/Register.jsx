@@ -1,13 +1,23 @@
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import InputController from "../../common/Inputs/InputController";
 import { validator } from "../../services/userful";
 import axiosInstance from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Register = ({ isCreateEmployee }) => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  const [seleccion, setSeleccion] = useState("Tatto");
+  const [rol, setRol] = useState("admin");
 
   const [userError, setUserError] = useState({
     userName: "",
@@ -15,6 +25,14 @@ const Register = () => {
     password: "",
     phone: "",
   });
+
+  const handleSeleccion = (e) => {
+    setSeleccion(e.target.value);
+  };
+
+  const handleRol = (e) => {
+    setRol(e.target.value);
+  };
 
   const errorCheck = (e) => {
     const error = validator(e.target.name, e.target.value);
@@ -37,21 +55,35 @@ const Register = () => {
         return;
       }
     }
-  
-    const data = {
-      username : e.target.userName.value,
-      email : e.target.email.value,
-      password : e.target.password.value,
-      phone: e.target.phone.value
+
+    let data;
+
+    if (isCreateEmployee) {
+      data = {
+        username: e.target.userName.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        phone: e.target.phone.value,
+        specialtyServices: seleccion,
+        role: rol,
+      };
+    } else {
+      data = {
+        username: e.target.userName.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        phone: e.target.phone.value,
+      };
     }
 
-    try{
-      const res = await axiosInstance.post('/users/register', data)
-      navigate('/login')
-    }catch(error){
-      console.log(error)
+    try {
+      const res = await axiosInstance.post("/users/register", data);
+      if(!isCreateEmployee){
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
     }
-
   };
 
   return (
@@ -63,7 +95,7 @@ const Register = () => {
     >
       <Box component="form" onSubmit={onSubmit} width="200px">
         <Typography variant="h5" textAlign="center" marginBottom="20px">
-          Register
+          {isCreateEmployee ? "Create Employee" : "Register"}
         </Typography>
         <InputController
           label="User"
@@ -90,6 +122,28 @@ const Register = () => {
           error={userError.phone ? userError.phone : ""}
           functionBlur={errorCheck}
         />
+        {isCreateEmployee && (
+          <>
+            <FormControl fullWidth>
+              <InputLabel sx={{ bgcolor: "white" }}>
+                Specialty Services
+              </InputLabel>
+              <Select fullWidth value={seleccion} onChange={handleSeleccion}>
+                <MenuItem value="Tatto">Tatto</MenuItem>
+                <MenuItem value="Piercing">Piercing</MenuItem>
+              </Select>
+            </FormControl>
+
+            <FormControl fullWidth>
+              <InputLabel sx={{ bgcolor: "white" }}>Rol</InputLabel>
+              <Select fullWidth value={rol} onChange={handleRol}>
+                <MenuItem value="super_admin">Super Admin</MenuItem>
+                <MenuItem value="admin">Admin</MenuItem>
+              </Select>
+            </FormControl>
+          </>
+        )}
+
         <Button type="submit" variant="contained" fullWidth>
           Submit
         </Button>
