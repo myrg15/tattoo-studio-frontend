@@ -27,13 +27,53 @@ const Profile = () => {
     password: datosRdxUser.credentials.password,
     phone: datosRdxUser.credentials.phone,
   });
-  
+
   const [profileError, setProfileError] = useState({
     userNameError: '',
     emailError: '',
     passwordError: '',
     phoneError: '',
   });
+
+  const errorCheck = (e) => {
+    const error = validator(e.target.name, e.target.value);
+
+    setUserError((prevState) => {
+      const newState = {
+        ...prevState,
+        [e.target.name]: error,
+      };
+
+      return newState;
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    for (let test in userError) {
+      if (userError[test] !== "") {
+        return;
+      }
+    }
+  
+    const data = {
+      username : e.target.userName.value,
+      email : e.target.email.value,
+      password : e.target.password.value,
+      phone: e.target.phone.value
+    }
+
+    try{
+      const res = await axiosInstance.get('/profile, auth profile', data)
+      navigate('/profile')
+    }catch(error){
+      console.log(error)
+    }
+
+  };
+
+  //aqui debo return diseño con BOX de mui
 
 
   
