@@ -2,8 +2,9 @@ import { Box, Button, Typography } from "@mui/material"
 import InputController from "../../common/Inputs/InputController"
 import axiosInstance from "../../utils/axios"
 import { useNavigate } from "react-router-dom"
+import { Body } from "../Body/Body";
 
-const Login = () => {
+export const Login = () => {
 
   const navigate = useNavigate()
 

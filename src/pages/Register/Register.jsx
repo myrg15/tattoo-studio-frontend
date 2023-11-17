@@ -13,7 +13,7 @@ import { validator } from "../../services/userful";
 import axiosInstance from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
-const Register = ({ isCreateEmployee }) => {
+export const Register = ({ isCreateEmployee }) => {
   const navigate = useNavigate();
 
   const [seleccion, setSeleccion] = useState("Tatto");
@@ -58,7 +58,7 @@ const Register = ({ isCreateEmployee }) => {
 
     let data;
 
-    if (isCreateEmployee) {
+    if (isCreateEmployee) { //el super admin registra un empleado
       data = {
         username: e.target.userName.value,
         email: e.target.email.value,
@@ -67,7 +67,7 @@ const Register = ({ isCreateEmployee }) => {
         specialtyServices: seleccion,
         role: rol,
       };
-    } else {
+    } else { //si no se estaria registrando un usuario
       data = {
         username: e.target.userName.value,
         email: e.target.email.value,
