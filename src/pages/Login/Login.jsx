@@ -3,6 +3,7 @@ import InputController from "../../common/Inputs/InputController"
 import axiosInstance from "../../utils/axios"
 import { useNavigate } from "react-router-dom"
 import { Body } from "../Body/Body";
+import { login } from "../../services/apiCalls";
 
 export const Login = () => {
 
@@ -15,13 +16,8 @@ export const Login = () => {
       password : e.target.password.value
     }
 
-
     try {
-      const res = await axiosInstance.post('/users/login', data)
-      localStorage.setItem('token', res.data.token)
-      localStorage.setItem('username', res.data.username)
-      localStorage.setItem('role', res.data.role)
-      window.location.href = '/'
+      await login(data)
     } catch (error) {
       console.log(error)
     }

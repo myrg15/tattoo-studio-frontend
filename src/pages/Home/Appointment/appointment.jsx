@@ -12,13 +12,14 @@ import {
   import { validator } from "../../services/userful";
   import axiosInstance from "../../utils/axios";
   import { useNavigate } from "react-router-dom";
+import { Message } from "@mui/icons-material";
   
   const CreateAppointment = () => {
     const navigate = useNavigate();
   
     const [seleccion, setSeleccion] = useState("user");
-    //const [rol, setRol] = useState("user");
-  
+    const [employees, setEmployees] = useNavigate ("employees");
+    
     const [userError, setUserError] = useState({
       id: "",
       users: "",
@@ -37,11 +38,11 @@ import {
     const handleSeleccion = (e) => {
       setSeleccion(e.target.value);
     };
-  
-    const handleRol = (e) => {
-      setRol(e.target.value);
-    };
-  
+    
+    const handleEmployees = (e) => {
+        setEmployees(e.target.value);
+      };
+
     const errorCheck = (e) => {
       const error = validator(e.target.name, e.target.value);
   
@@ -66,32 +67,52 @@ import {
   
       let data;
   
-      if (isCreateEmployee) { //el super admin registra un empleado
+      if (users) { //el user crea una cita
         data = {
-          username: e.target.userName.value,
-          email: e.target.email.value,
-          password: e.target.password.value,
-          phone: e.target.phone.value,
-          specialtyServices: seleccion,
-          role: rol,
+          id: e.target.userName.value,
+          users: e.target.email.value,
+          employees: e.target.password.value,
+          portfolio_id: e.target.phone.value,
+          imag: e.target.imag.value,
+          date: e.target.date.value,
+          time: e.target.time.value,
+          service: e.target.service.value,
+          status: e.target.status.value,
+          is_active: e.target.is_active.value,
+          created_at: e.target.created_at.value,
         };
       } else { //si no se estaria registrando un usuario
+        (employees)
         data = {
-          username: e.target.userName.value,
-          email: e.target.email.value,
-          password: e.target.password.value,
-          phone: e.target.phone.value,
+            id: e.target.userName.value,
+            users: e.target.email.value,
+            employees: e.target.password.value,
+            portfolio_id: e.target.phone.value,
+            imag: e.target.imag.value,
+            date: e.target.date.value,
+            time: e.target.time.value,
+            service: e.target.service.value,
+            status: e.target.status.value,
+            is_active: e.target.is_active.value,
+            created_at: e.target.created_at.value,
         };
       }
   
       try {
-        const res = await axiosInstance.post("/users/register", data);
-        if(!isCreateEmployee){
-          navigate("/login");
-        }
+        const res = await axiosInstance.post("/users/CreateAppointment", data);
+        const resul= await axiosInstance.post("/employess/CreateAppointment", data);
+        if(users){
+          message: ('puede crear su cita'),
+        }else{
+            if (employees){
+            message: ('cree nueva cita'),
+            navigate("/login");
+         }
+        };
       } catch (error) {
         console.log(error);
-      }
+      }  
+    }
     };
   
     return (
@@ -103,7 +124,7 @@ import {
       >
         <Box component="form" onSubmit={onSubmit} width="200px">
           <Typography variant="h5" textAlign="center" marginBottom="20px">
-            {isCreateEmployee ? "Create Employee" : "Register"}
+           {users ? "Create appointment" : "CreateAppointment"}
           </Typography>
           <InputController
             label="User"
@@ -160,5 +181,5 @@ import {
     );
   };
   
-  export default Register;
+  export default CreateAppointment;
   

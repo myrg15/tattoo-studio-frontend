@@ -12,6 +12,7 @@ import InputController from "../../common/Inputs/InputController";
 import { validator } from "../../services/userful";
 import axiosInstance from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/apiCalls";
 
 export const Register = ({ isCreateEmployee }) => {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ export const Register = ({ isCreateEmployee }) => {
     }
 
     try {
-      const res = await axiosInstance.post("/users/register", data);
+      await registerUser(data)
       if(!isCreateEmployee){
         navigate("/login");
       }
