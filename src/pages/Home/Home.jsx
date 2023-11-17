@@ -29,17 +29,17 @@ export const Home = () => {
     data();
   }, []);
 
+
   return (
     <Box display="flex" gap="10px" padding="20px" sx={{ cursor: "pointer" }}>
       {designs.map((item) => (
-        <Box width="200px" height="200px">
+        <Box key={item.id} width="200px" height="200px">
           <Box
             component="img"
             src={`${item.imag}?w=180&h=180&fit=crop&auto=format`}
             width="100%"
             height="100%"
           />
-
           <Button variant="contained">
             Agendar
           </Button>
