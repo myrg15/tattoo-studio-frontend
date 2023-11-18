@@ -26,7 +26,6 @@ export const registerUser = async (data) => {
    }
 }
 
-
 export const getAllDesing = async() => {
     try {
         const res = await axiosInstance.get("/desingallery/all");
