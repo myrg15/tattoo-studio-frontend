@@ -15,57 +15,56 @@ import axiosInstance from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { createAppointment, getAllArtist, getAllDesing } from "../../services/apiCalls";
+import { getAllDesing } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
 
-//falta LOGICA
 
-const HORAS_DISPONIBLES = ["09:00", "12:00", "15:00", "18:00"];
+//const HORAS_DISPONIBLES = ["09:00", "12:00", "15:00", "18:00"];
 
 export const Home = () => {
   const [designs, setDesigns] = useState([]);
-  const [artist, setArtist] = useState([]);
+  /*const [artist, setArtist] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [selectHour, setSelectHour] = useState("")
   const [selectArtist, setSelectArtist] = useState("")
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setOpen(false);*/
 
   useEffect(() => {
     const data = async () => {
       const response = await getAllDesing();
-      const artist = await getAllArtist();
-      setArtist(artist);
+      //const artist = await getAllArtist();
+      //setArtist(artist);
       setDesigns(response);
     };
 
     data();
   }, []);
 
-  const seleccionHour = (e) => {
+  /*const seleccionHour = (e) => {
     setSelectHour(e.target.value)
   };
   const seleccionArtist = (e) => {
     setSelectArtist(e.target.value)
-  };
+  };*/
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
-      time : selectHour,
-      tattooartist_id : selectArtist,
-      service : 'tattoo'
+      imag : setDesigns,
+      //tattooartist_id : selectArtist,
+      //service : 'tattoo'
     }
 
-    await createAppointment(data)
+    await getAllDesing(data)
    
   };
 
   return (
     <Box display="flex" gap="10px" padding="20px" sx={{ cursor: "pointer" }}>
-      <Modal
+      {/*<Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -114,7 +113,7 @@ export const Home = () => {
             </Button>
           </Box>
         </Box>
-      </Modal>
+              </Modal>*/}
       <Grid container spacing={3}>
         {designs.map((item) => (
           <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
@@ -145,7 +144,7 @@ export const Home = () => {
                   transform: "translateX(-50%)",
                 }}
               >
-                Agendar
+                Schedule
               </Button>
             </Box>
           </Grid>
