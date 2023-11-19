@@ -12,8 +12,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { createAppointment, getAllDesing } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
-
-//const HORAS_DISPONIBLES = ["09:00", "12:00", "15:00", "18:00"];
+//import { Home } from "../../services/apiCalls";
 
 export const Home = () => {
   const navigate = useNavigate();
