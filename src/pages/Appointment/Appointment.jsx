@@ -12,7 +12,7 @@ import {
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { appointmentCreate, getAllArtist } from "../../../services/apiCalls";
+import { createAppointment, getAllArtist } from "../../../services/apiCalls";
 //import { Home } from "../Home";
 import { useNavigate } from "react-router-dom";
 
