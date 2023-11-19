@@ -1,13 +1,8 @@
 import {
   Box,
   Button,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
   Grid,
-  Modal,
-  FormControl,
+  Modal
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 //import * as React from "react";
@@ -17,19 +12,16 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { getAllDesing } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
-
+//import {Home} from "../Home/../Home";
 
 //const HORAS_DISPONIBLES = ["09:00", "12:00", "15:00", "18:00"];
 
 export const Home = () => {
   const [designs, setDesigns] = useState([]);
-  /*const [artist, setArtist] = useState([]);
-  const [open, setOpen] = React.useState(false);
-  const [selectHour, setSelectHour] = useState("")
-  const [selectArtist, setSelectArtist] = useState("")
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);*/
+  //const [artist, setArtist] = useState([]);
+  const [open, setOpen] = useState(false);
+  //const [selectHour, setSelectHour] = useState("")
+  //const [selectArtist, setSelectArtist] = useState("")*/
 
   useEffect(() => {
     const data = async () => {
@@ -42,6 +34,8 @@ export const Home = () => {
     data();
   }, []);
 
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   /*const seleccionHour = (e) => {
     setSelectHour(e.target.value)
   };
@@ -58,62 +52,10 @@ export const Home = () => {
       //service : 'tattoo'
     }
 
-    await getAllDesing(data)
-   
+    await getAllDesing(data);
   };
-
   return (
     <Box display="flex" gap="10px" padding="20px" sx={{ cursor: "pointer" }}>
-      {/*<Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          width="300px"
-          bgcolor="white"
-          position="absolute"
-          top="50%"
-          left="50%"
-          sx={{ transform: "translate(-50%, -50%)" }}
-          padding="15px"
-        >
-          <Box
-            component="form"
-            display="flex"
-            flexDirection="column"
-            gap="10px"
-            onSubmit={onSubmit}
-          >
-            <FormControl fullWidth>
-              <InputLabel sx={{ bgcolor: "white" }}>
-                Horas Disponibles
-              </InputLabel>
-              <Select fullWidth value={selectHour} onChange={seleccionHour}>
-                {HORAS_DISPONIBLES.map((item) => {
-                  return <MenuItem value={item}>{item}</MenuItem>;
-                })}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth>
-              <InputLabel sx={{ bgcolor: "white" }}>Artistas</InputLabel>
-              <Select fullWidth value={selectArtist} onChange={seleccionArtist}>
-                {artist.map((item) => {
-                  return (
-                    <MenuItem value={item.user_id}>
-                      {item.user.username}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
-            <Button type="submit" variant="contained">
-              Reservar
-            </Button>
-          </Box>
-        </Box>
-              </Modal>*/}
       <Grid container spacing={3}>
         {designs.map((item) => (
           <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
@@ -150,8 +92,24 @@ export const Home = () => {
           </Grid>
         ))}
       </Grid>
+
+      {/* Modal para mostrar aquí */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+          {/* Contenido del modal aquí */}
+          <h2 id="modal-modal-title">Modal Title</h2>
+          <p id="modal-modal-description">Modal Content</p>
+          <Button onClick={handleClose}>Close</Button>
+        </Box>
+      </Modal>
     </Box>
   );
 };
 
+  
 export default Home;

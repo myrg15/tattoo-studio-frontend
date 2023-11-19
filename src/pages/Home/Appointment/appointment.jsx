@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { createAppointment } from "../../../services/apiCalls";
 //import InputController from "../../common/Inputs/InputController";
 //import { validator } from "../../services/userful";
 //import axiosInstance from "../../utils/axios";
@@ -274,4 +275,4 @@ const onSubmit = async (e) => {
     );
   };*/
 
-export default CreateAppointment;
+export default createAppointment;
