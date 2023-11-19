@@ -13,21 +13,18 @@ import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createAppointment, getAllArtist } from "../../../services/apiCalls";
-//import { Home } from "../Home";
+import { Home } from "../Home";
 import { useNavigate } from "react-router-dom";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 
 export const appointmentCreate = () => {
   const navigate = useNavigate();
-  //navigate ('/Home');
+ 
   const [open, setOpen] = useState(true);
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectHour, setSelectHour] = useState("");
   const [selectArtist, setSelectArtist] = useState("");
-
-  //const handleOpen = () => setOpen(true);
-  //const handleClose = () => setOpen(false);
 
   useEffect(() => {
     // const data = async () => {
@@ -48,16 +45,6 @@ export const appointmentCreate = () => {
     setOpen(false);
     navigate("/Home");
   };
-
-  //const selectionDate = (e) => {
-  //  setSelectDate(e.target.value);
-  //};
-  /*const selectionHour = (e) =>{ //e sera la hora seleccionada 
-          setSelectHour (e.target.value);//target permite obtener el valor seleccionado por el usuario 
-      }; 
-    const selectionArtist = (e) =>{
-          setSelectArtist (e.target.value);
-      };*/
 
   const onSubmit = async (e) => {
     e.preventDefault();

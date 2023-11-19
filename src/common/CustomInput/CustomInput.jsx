@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, Button, Typography, TextField } from "@mui/material"
 import { CustomInput} from "../../common/CustomInput";
 import {Profile} from "../../pages/Profile";
-//import { analysis } from "vite"; como se debe importar plugin vite:import-analysis
 
 export const CustomInput = ({disabled, design, type, name, placeholder, value, functionProp, functionBlur}) => {
 
