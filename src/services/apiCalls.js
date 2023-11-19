@@ -1,14 +1,9 @@
-//aqui debo poner todas mis rutas
-//export const register
-
 import axiosInstance from "../utils/axios";
-
-//export const logUser = asyn (boby)
 
 export const login = async (data) => {
   try {
     const res = await axiosInstance.post("/users/login", data);
-    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("token", res.data.token); //por medio de setItem guardamos el valor de token en el localStorage
     localStorage.setItem("username", res.data.username);
     localStorage.setItem("role", res.data.role);
     window.location.href = "/";
@@ -44,11 +39,11 @@ export const getAllArtist = async () => {
 };
 
 export const createAppointment = async (data) => {
-  const token = localStorage.getItem('token');
-  console.log(token)
+  const token = localStorage.getItem('token'); //getItem para recuperar el token de autenticación almacenado en el local storage
+   console.log(token)
 
   try {
-    const response = await axiosInstance.post(
+    const response = await axiosInstance.post( //usamos una solitud POST para enviar los datos proporcionados en el objeto data(user_id, date, time), incluimos en token recuperado del localStore
       "/appointment/appointment_create",
       data,
       {

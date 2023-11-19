@@ -10,13 +10,17 @@ import axiosInstance from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { getAllDesing } from "../../services/apiCalls";
+import { createAppointment, getAllDesing } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
-//import {Home} from "../Home/../Home";
 
 //const HORAS_DISPONIBLES = ["09:00", "12:00", "15:00", "18:00"];
 
 export const Home = () => {
+  const navigate = useNavigate();
+  const handleScheduleClick = () =>{
+    navigate('/appointment');
+  };
+  
   const [designs, setDesigns] = useState([]);
   //const [artist, setArtist] = useState([]);
   const [open, setOpen] = useState(false);
@@ -78,7 +82,7 @@ export const Home = () => {
               />
               <Button
                 variant="contained"
-                onClick={handleOpen}
+                onClick={handleScheduleClick}
                 sx={{
                   position: "absolute",
                   bottom: "10px",
@@ -92,24 +96,8 @@ export const Home = () => {
           </Grid>
         ))}
       </Grid>
-
-      {/* Modal para mostrar aquí */}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
-          {/* Contenido del modal aquí */}
-          <h2 id="modal-modal-title">Modal Title</h2>
-          <p id="modal-modal-description">Modal Content</p>
-          <Button onClick={handleClose}>Close</Button>
-        </Box>
-      </Modal>
     </Box>
   );
 };
-
   
 export default Home;
