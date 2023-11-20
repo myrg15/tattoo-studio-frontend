@@ -16,7 +16,7 @@ import {appointmentCreate} from '../Appointment/Appointment';
                 <Route path="/register" element={<Register />}/>
                 <Route path="/profile" element={<Profile />}/>
                 <Route path="/create-employee" element={<Register isCreateEmployee={true}/>} />            
-                <Route path="/appointmentCreate" element={<Appointment/>}/>
+                {/*<Route path="/appointmentCreate" element={<Appointment/>}/>*/}
             </Routes>
          </>
      )

@@ -19,10 +19,23 @@ const navItems = [
   
   },
   {
+    label: "Profile",
+    path: "/profile",
+    isViewToken: false, //lleva en true?
+  },
+  {
     label: "Create Employee",
     path: "/create-employee",
     isViewToken: true,
     role: "super_admin",
+  },
+  {
+    label: "Desingallery",
+    path: "/wiew-desingallery",
+  },
+  {
+    label: "Logout",
+    path: "/logout",
   },
 ];
 

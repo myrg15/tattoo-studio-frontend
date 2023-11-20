@@ -4,16 +4,13 @@ import {
   Button,
   FormControl,
   InputLabel,
-  MenuItem,
-  Select,
-  Button,
   Typography,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { createAppointment, getAllArtist } from "../../../services/apiCalls";
-import { Home } from "../Home";
+//import { createAppointment, getAllArtist } from "../../../services/apiCalls";
+//import { Home } from "../Home";
 import { useNavigate } from "react-router-dom";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
