@@ -12,20 +12,18 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { createAppointment, getAllDesing } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
+import AppointmentCreate from "../Appointment/Appointment";
 //import { Home } from "../../services/apiCalls";
 
 export const Home = () => {
   const navigate = useNavigate();
-  const handleScheduleClick = () =>{
-    navigate('/appointment');
-  };
-  
+ 
   const [designs, setDesigns] = useState([]);
   //const [artist, setArtist] = useState([]);
   const [open, setOpen] = useState(false);
+  const [idGallery, setIdGallery] = useState("")
   //const [selectHour, setSelectHour] = useState("")
   //const [selectArtist, setSelectArtist] = useState("")*/
-
   useEffect(() => {
     const data = async () => {
       const response = await getAllDesing();
@@ -59,6 +57,7 @@ export const Home = () => {
   };
   return (
     <Box display="flex" gap="10px" padding="20px" sx={{ cursor: "pointer" }}>
+      <AppointmentCreate open={open} setOpen={setOpen} idGallery={idGallery} />
       <Grid container spacing={3}>
         {designs.map((item) => (
           <Grid key={item.id} item xs={12} sm={6} md={4} lg={3}>
@@ -81,7 +80,9 @@ export const Home = () => {
               />
               <Button
                 variant="contained"
-                onClick={handleScheduleClick}
+                onClick={() => {
+                  setIdGallery(item.id)
+                  setOpen(true)}}
                 sx={{
                   position: "absolute",
                   bottom: "10px",

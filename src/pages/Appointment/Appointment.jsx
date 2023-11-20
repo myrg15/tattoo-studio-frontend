@@ -4,55 +4,65 @@ import {
   Button,
   FormControl,
   InputLabel,
-  Typography,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-//import { createAppointment, getAllArtist } from "../../../services/apiCalls";
-//import { Home } from "../Home";
 import { useNavigate } from "react-router-dom";
+import { createAppointment, getAllArtist } from "../../services/apiCalls";
+import InputController from "../../common/Inputs/InputController";
+import { DateRangeOutlined } from "@mui/icons-material";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 
-export const appointmentCreate = () => {
+export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
   const navigate = useNavigate();
- 
-  const [open, setOpen] = useState(true);
+
+  
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectHour, setSelectHour] = useState("");
   const [selectArtist, setSelectArtist] = useState("");
+  const [artist, setArtist] = useState([]);
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     // const data = async () => {
     const fetchData = async () => {
       const artist = await getAllArtist();
-      setSelectArtist(artist[0]?.user_id || ""); //establezco el primer artista como predeterminado
-      //const dateApoint= await createAppointment();
-      //const hourApoint = await createAppointment();
-      fetchData();
-      //setSelectDate(dateApoint);
-      //setSelectHour(hourApoint);
-      //setSelectArtist(artist);
+      setArtist(artist);
     };
+
+    fetchData();
     //data();
   }, []);
 
   const handleClose = () => {
     setOpen(false);
-    navigate("/Home");
+  
+  };
+
+  const handleDate = (e) => {
+    setDate(e.target.value)
+    console.log("fecha");
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
+
+
     const data = {
-      user_id: selectArtist,
-      date: selectDate,
+      employee: selectArtist,
+      date: date,
       time: selectHour,
+      desingGallery : idGallery
     };
-    await createAppointment(data);
-    handleClose();
+
+    console.log(data)
+
+    //await createAppointment(data);
+    //  handleClose();
   };
 
   return (
@@ -70,21 +80,25 @@ export const appointmentCreate = () => {
         left="50%"
         sx={{ transform: "translate(-50%, -50%)" }}
         padding="15px"
+        borderRadius="5px"
       >
         <Box
           component="form"
           display="flex"
           flexDirection="column"
-          gap="10px"
+          gap="15px"
           onSubmit={onSubmit}
+          padding="5px"
         >
           <FormControl fullWidth>
-            <InputLabel sx={{ bgcolor: "white" }}>Date Available</InputLabel>
-            <DatePicker
-              selected={selectDate}
-              onChange={(date) => setSelectDate(date)}
-              dateFormat="yyyy-MM-dd"
-            />
+            <InputController
+              value={date}
+              type="date"
+              label="Date"
+              onChange={handleDate}
+            >
+              Date Available
+            </InputController>
           </FormControl>
 
           <FormControl fullWidth>
@@ -95,9 +109,11 @@ export const appointmentCreate = () => {
               onChange={(e) => setSelectHour(e.target.value)}
             >
               {HOURS_AVAILABLE.map((item) => {
-                <MenuItem key={item} value={item}>
-                  {item}
-                </MenuItem>;
+                return (
+                  <MenuItem key={item} value={item}>
+                    {item}
+                  </MenuItem>
+                );
               })}
             </Select>
           </FormControl>
@@ -126,4 +142,4 @@ export const appointmentCreate = () => {
   );
 };
 
-export default appointmentCreate;
+export default AppointmentCreate;
