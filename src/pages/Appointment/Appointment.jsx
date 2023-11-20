@@ -6,6 +6,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Typography,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
@@ -19,12 +20,12 @@ const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
   const navigate = useNavigate();
 
-  
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectHour, setSelectHour] = useState("");
   const [selectArtist, setSelectArtist] = useState("");
   const [artist, setArtist] = useState([]);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     // const data = async () => {
@@ -39,30 +40,39 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
 
   const handleClose = () => {
     setOpen(false);
-  
   };
 
   const handleDate = (e) => {
-    setDate(e.target.value)
+    setDate(e.target.value);
     console.log("fecha");
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-
+    console.log("test");
 
     const data = {
       employee: selectArtist,
       date: date,
       time: selectHour,
-      desingGallery : idGallery
+      desingGallery: idGallery,
     };
 
-    console.log(data)
-
-    //await createAppointment(data);
-    //  handleClose();
+    try {
+      console.log(data);
+      await createAppointment(data);
+      setMessage("Create Appointment Success");
+      setTimeout(() => {
+        setMessage("")
+        setSelectHour("")
+        setSelectArtist("")
+        setSelectDate(new Date())
+        handleClose();
+      }, 1000 * 3)
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -72,6 +82,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
+      
       <Box
         width="300px"
         bgcolor="white"
@@ -82,6 +93,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
         padding="15px"
         borderRadius="5px"
       >
+        {message && <Typography color="green">{message}</Typography>}
         <Box
           component="form"
           display="flex"

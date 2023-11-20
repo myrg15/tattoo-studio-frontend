@@ -21,7 +21,12 @@ const navItems = [
   {
     label: "Profile",
     path: "/profile",
-    isViewToken: false, //lleva en true?
+    isViewToken: true,
+  },
+  {
+    label: "Appointment",
+    path: "/appointment",
+    isViewToken : true
   },
   {
     label: "Create Employee",
