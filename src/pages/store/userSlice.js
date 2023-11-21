@@ -7,16 +7,17 @@ export const userSlice = createSlice({
       credentials: {}
     },
     reducers: {
-      login: (state, action) => {
+      login: (state, action) => { //le vas agregar todo lo que yo le pase por el path
         return {
-          ...state,
-          ...action.payload
+          ...state, //al estado inicial le pasa lo que esta en la constante userslice
+          ...action.payload// es todo el objeto que le he pasado
         }
       },
       logout: (state, action) => {
         return {
           ...state,
           ...action.payload
+         // credentials {} 
         }
       }
       
