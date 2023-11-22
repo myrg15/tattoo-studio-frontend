@@ -35,12 +35,13 @@ const navItems = [
     role: "super_admin",
   },
   {
-    label: "Desingallery",
-    path: "/wiew-desingallery",
-  },
-  {
-    label: "Logout",
-    path: "/logout",
+   label: "Logout",
+    path: "/home",
+    isViewToken : true,
+    fnc : () => {
+      localStorage.clear()
+      window.location.href = "/home"
+    }
   },
 ];
 
@@ -70,7 +71,7 @@ const Header = () => {
 
         
         return (
-          <NavLinkCustom key={item.path} to={item.path}>
+          <NavLinkCustom key={item.path} to={item.path} onClick={item.fnc}>
             <Typography>{item.label}</Typography>
           </NavLinkCustom>
         );

@@ -76,3 +76,19 @@ export const getAllAppointmentsByUser = async () => {
    console.log(error);
  }
 }
+
+
+export const getProfile = async() => {
+  const token = localStorage.getItem('token');
+  try{
+    const response = await   axiosInstance.get('/users/profile', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    return response.data.date
+  }catch(error){
+    console.log(error)
+  }
+}

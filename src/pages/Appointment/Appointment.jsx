@@ -50,26 +50,26 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("test");
 
     const data = {
-      employee: selectArtist,
+      employees: selectArtist,
       date: date,
       time: selectHour,
-      desingGallery: idGallery,
+      desingallery: idGallery,
     };
 
     try {
       console.log(data);
       await createAppointment(data);
-      setMessage("Create Appointment Success");
+      setMessage("Successfully created appointment");
       setTimeout(() => {
         setMessage("")
         setSelectHour("")
         setSelectArtist("")
         setSelectDate(new Date())
         handleClose();
-      }, 1000 * 3)
+     // }, 1000 * 3)
+      }, 7000)
     } catch (error) {
       console.log(error);
     }
