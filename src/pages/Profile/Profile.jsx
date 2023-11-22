@@ -9,8 +9,6 @@ export const Profile = () => {
   useEffect(() => {
     const data = async () => {
       const response = await getProfile();
-      //const artist = await getAllArtist();
-      //setArtist(artist);
       setProfile(response);
     };
 

@@ -35,7 +35,7 @@ const ViewAppointments = () => {
   if (appointments.length === 0) {
     return (
       <Box height="100%" display="flex" justifyContent="center" alignItems="center">
-        <Typography variant="h2">No tienes citas</Typography>
+        <Typography variant="h2">Has no appointment pending</Typography>
       </Box>
     );
   }

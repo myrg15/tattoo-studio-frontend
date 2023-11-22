@@ -13,7 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { createAppointment, getAllArtist } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
-import { DateRangeOutlined } from "@mui/icons-material";
+//import { DateRangeOutlined } from "@mui/icons-material";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 
@@ -28,14 +28,11 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    // const data = async () => {
     const fetchData = async () => {
       const artist = await getAllArtist();
       setArtist(artist);
     };
-
     fetchData();
-    //data();
   }, []);
 
   const handleClose = () => {
@@ -68,8 +65,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
         setSelectArtist("")
         setSelectDate(new Date())
         handleClose();
-     // }, 1000 * 3)
-      }, 7000)
+      }, 6000)
     } catch (error) {
       console.log(error);
     }
@@ -81,8 +77,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-    >
-      
+    > 
       <Box
         width="300px"
         bgcolor="white"
