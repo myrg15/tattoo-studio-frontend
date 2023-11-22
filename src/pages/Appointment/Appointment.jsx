@@ -13,7 +13,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { createAppointment, getAllArtist } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
-//import { DateRangeOutlined } from "@mui/icons-material";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 

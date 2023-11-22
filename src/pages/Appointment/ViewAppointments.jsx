@@ -18,6 +18,7 @@ const ViewAppointments = () => {
   useEffect(() => {
     const fetchData = async () => {
       const resp = await getAllAppointmentsByUser();
+      console.log (resp)
       setAppointments(resp.appointments);
     };
 
