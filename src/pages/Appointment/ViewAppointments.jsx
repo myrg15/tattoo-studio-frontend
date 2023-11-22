@@ -57,12 +57,8 @@ const ViewAppointments = () => {
           return (
             <Card sx={{ padding: "10px" }}>
               <Typography variant="body1">Date : {item.date}</Typography>
-              <Typography variant="body1">
-                Design : {item.desingallery}
-              </Typography>
-              <Typography variant="body1">
-                Employee : {item.employees}
-              </Typography>
+              <Typography variant="body1">Design : {item.desingallery}</Typography>
+              <Typography variant="body1">Employee : {item.employees}</Typography>
               <Typography variant="body1">Time : {item.time}</Typography>
             </Card>
           );
