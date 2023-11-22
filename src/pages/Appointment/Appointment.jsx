@@ -46,7 +46,6 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-
     const data = {
       employees: selectArtist,
       date: date,
@@ -59,12 +58,12 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
       await createAppointment(data);
       setMessage("Successfully created appointment");
       setTimeout(() => {
-        setMessage("")
-        setSelectHour("")
-        setSelectArtist("")
-        setSelectDate(new Date())
+        setMessage("");
+        setSelectHour("");
+        setSelectArtist("");
+        setSelectDate(new Date());
         handleClose();
-      }, 6000)
+      }, 6000);
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +75,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-    > 
+    >
       <Box
         width="300px"
         bgcolor="white"

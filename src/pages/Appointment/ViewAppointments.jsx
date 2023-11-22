@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
   Typography,
   Box,
   Card,
@@ -18,7 +13,7 @@ const ViewAppointments = () => {
   useEffect(() => {
     const fetchData = async () => {
       const resp = await getAllAppointmentsByUser();
-      console.log (resp)
+      console.log(resp);
       setAppointments(resp.appointments);
     };
 
@@ -35,7 +30,12 @@ const ViewAppointments = () => {
 
   if (appointments.length === 0) {
     return (
-      <Box height="100%" display="flex" justifyContent="center" alignItems="center">
+      <Box
+        height="100%"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Typography variant="h2">Has no appointment pending</Typography>
       </Box>
     );
