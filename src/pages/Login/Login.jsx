@@ -40,5 +40,4 @@ export const Login = () => {
     </Box>
   );
 };
-
 export default Login;
