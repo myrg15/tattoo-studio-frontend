@@ -16,6 +16,10 @@ const ViewUsers = () => {
       }, []);
 
   return (
+    <Box>
+       <Typography variant="h4" padding="10px">
+        All Users
+      </Typography> 
     <Box display="flex" flexWrap="wrap" gap="15px" padding="15px" justifyContent="center">
       {
         users.map(item => {
@@ -26,6 +30,7 @@ const ViewUsers = () => {
             </Card>
         })
       }
+      </Box>
     </Box>
   )
 }

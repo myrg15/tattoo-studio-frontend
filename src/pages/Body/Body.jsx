@@ -6,7 +6,6 @@ import  { Profile } from '../Profile/Profile';
 import ViewAppointments from '../Appointment/ViewAppointments';
 import ViewUsers from '../User/ViewUsers';
 
-//aqui tiene que ir las rutas de login, register, profile, home, todas ls rutas que tengo en el HEADER
     export const Body = () => {
      return (
          <>
