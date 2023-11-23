@@ -4,14 +4,23 @@ import {
   Box,
   Card,
 } from "@mui/material";
-import { getAllAppointmentsByUser } from "../../services/apiCalls";
+import { getAllAppointments, getAllAppointmentsByUser } from "../../services/apiCalls";
 
 const ViewAppointments = () => {
+  const role = localStorage.getItem('role')
+  console.log(role)
   const [appointments, setAppointments] = useState([]);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+
+      if(role == "super_admin"){
+        const resp = await getAllAppointments()
+        console.log(resp)
+        return setAppointments(resp.appointments);
+      }
+
       const resp = await getAllAppointmentsByUser();
       console.log(resp);
       setAppointments(resp.appointments);

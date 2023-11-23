@@ -4,6 +4,7 @@ import  { Login }  from '../Login/Login';
 import  { Register }  from '../Register/Register';
 import  { Profile } from '../Profile/Profile';
 import ViewAppointments from '../Appointment/ViewAppointments';
+import ViewUsers from '../User/ViewUsers';
 
 //aqui tiene que ir las rutas de login, register, profile, home, todas ls rutas que tengo en el HEADER
     export const Body = () => {
@@ -15,7 +16,8 @@ import ViewAppointments from '../Appointment/ViewAppointments';
                 <Route path="/login" element={<Login />}/>
                 <Route path="/register" element={<Register />}/>
                 <Route path="/profile" element={<Profile />}/>
-                <Route path="/create-employee" element={<Register isCreateEmployee={true}/>} />            
+                <Route path="/create-employee" element={<Register isCreateEmployee={true}/>} />
+                <Route path="/view-users" element={<ViewUsers />} />         
                 <Route path="/appointment" element={<ViewAppointments/>}/>
             </Routes>
          </>

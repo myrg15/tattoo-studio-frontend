@@ -35,6 +35,12 @@ const navItems = [
     role: "super_admin",
   },
   {
+    label: "View Users",
+    path: "/view-users",
+    isViewToken: true,
+    role: "super_admin",
+  },
+  {
    label: "Logout",
     path: "/home",
     isViewToken : true,
