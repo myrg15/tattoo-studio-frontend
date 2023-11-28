@@ -25,7 +25,8 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
   const [artist, setArtist] = useState([]);
   const [date, setDate] = useState(new Date());
   const [message, setMessage] = useState("");
-
+ // const [modify, setModify] = useState(false);
+ 
   useEffect(() => {
     const fetchData = async () => {
       const artist = await getAllArtist();
@@ -36,11 +37,23 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
 
   const handleClose = () => {
     setOpen(false);
+    //setModify(false);
+    setSelectDate(new Date());
+    setSelectHour("");
+    setSelectArtist("");
   };
+
+  /*const handleModify = () =>{
+    setOpen(true);
+    setModify(true);
+    setSelectDate(new Date());
+    setSelectHour("");
+    setSelectArtist("");
+  };*/
 
   const handleDate = (e) => {
     setDate(e.target.value);
-    console.log("fecha");
+    //console.log("fecha");
   };
 
   const onSubmit = async (e) => {
@@ -63,7 +76,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
         setSelectArtist("");
         setSelectDate(new Date());
         handleClose();
-      }, 6000);
+      },8000);
     } catch (error) {
       console.log(error);
     }
@@ -96,6 +109,16 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
           padding="5px"
         >
           <FormControl fullWidth>
+            <InputLabel sx={{ bgcolor: "white" }}>Date</InputLabel>
+            <input
+              type="date"
+              value={date}
+              onChange={handleDate}
+              //disabled={modify}
+            />
+          </FormControl>
+
+          {/*<FormControl fullWidth>
             <InputController
               value={date}
               type="date"
@@ -104,7 +127,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
             >
               Date Available
             </InputController>
-          </FormControl>
+          </FormControl>*/}
 
           <FormControl fullWidth>
             <InputLabel sx={{ bgcolor: "white" }}>Hours Available</InputLabel>
@@ -112,14 +135,15 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
               fullWidth
               value={selectHour}
               onChange={(e) => setSelectHour(e.target.value)}
+              //disabled={modify}
             >
-              {HOURS_AVAILABLE.map((item) => {
-                return (
+              {HOURS_AVAILABLE.map((item) => (
+                //return (
                   <MenuItem key={item} value={item}>
                     {item}
                   </MenuItem>
-                );
-              })}
+                //);
+              ))}
             </Select>
           </FormControl>
 
@@ -129,6 +153,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
               fullWidth
               value={selectArtist}
               onChange={(e) => setSelectArtist(e.target.value)}
+              //disabled={modify}
             >
               {artist.map((item) => (
                 <MenuItem key={item.user_id} value={item.user_id}>
@@ -140,7 +165,16 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
 
           <Button type="submit" variant="contained">
             Submit
+            </Button>
+          {message && (
+            <Button type="button" variant="contained" onClick={handleClose}>
+            Cerrar
           </Button>
+          )}
+          {/*<Button type="button" variant="contained" onClick={handleModify}>
+            Modificar
+              </Button>*/}
+          ¨{/*{!modify && (*/}
         </Box>
       </Box>
     </Modal>
