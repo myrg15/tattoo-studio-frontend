@@ -58,6 +58,25 @@ export const createAppointment = async (data) => {
   }
 };
 
+export const updateAppointments = async (data) => {
+  const token = localStorage.getItem('token'); //getItem para recuperar el token de autenticación almacenado en el local storage
+   console.log(token)
+
+  try {
+    const response = await axiosInstance.put( 
+     "/appointment/appointment_update/:id",
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getAllAppointmentsByUser = async () => {
   const token = localStorage.getItem('token'); //getItem para recuperar el token de autenticación almacenado en el local storage

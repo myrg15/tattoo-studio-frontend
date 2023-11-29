@@ -29,6 +29,11 @@ const navItems = [
     isViewToken : true
   },
   {
+    label: "Update Appointment",
+    path: "/update-appointment",
+    isViewToken : true
+  },
+  {
     label: "Create Employee",
     path: "/create-employee",
     isViewToken: true,

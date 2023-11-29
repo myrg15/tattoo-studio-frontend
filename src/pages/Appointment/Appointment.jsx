@@ -25,7 +25,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
   const [artist, setArtist] = useState([]);
   const [date, setDate] = useState(new Date());
   const [message, setMessage] = useState("");
- // const [modify, setModify] = useState(false);
+
  
   useEffect(() => {
     const fetchData = async () => {
@@ -37,19 +37,10 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
 
   const handleClose = () => {
     setOpen(false);
-    //setModify(false);
     setSelectDate(new Date());
     setSelectHour("");
     setSelectArtist("");
   };
-
-  /*const handleModify = () =>{
-    setOpen(true);
-    setModify(true);
-    setSelectDate(new Date());
-    setSelectHour("");
-    setSelectArtist("");
-  };*/
 
   const handleDate = (e) => {
     setDate(e.target.value);
@@ -153,7 +144,6 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
               fullWidth
               value={selectArtist}
               onChange={(e) => setSelectArtist(e.target.value)}
-              //disabled={modify}
             >
               {artist.map((item) => (
                 <MenuItem key={item.user_id} value={item.user_id}>
@@ -171,10 +161,6 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
             Cerrar
           </Button>
           )}
-          {/*<Button type="button" variant="contained" onClick={handleModify}>
-            Modificar
-              </Button>*/}
-          ¨{/*{!modify && (*/}
         </Box>
       </Box>
     </Modal>
