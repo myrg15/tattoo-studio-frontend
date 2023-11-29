@@ -58,7 +58,7 @@ export const createAppointment = async (data) => {
   }
 };
 
-export const updateAppointments = async (data) => {
+export const appointmentUpd = async (data) => {
   const token = localStorage.getItem('token'); //getItem para recuperar el token de autenticación almacenado en el local storage
    console.log(token)
 

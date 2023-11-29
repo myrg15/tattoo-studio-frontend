@@ -5,7 +5,7 @@ import  { Register }  from '../Register/Register';
 import  { Profile } from '../Profile/Profile';
 import ViewAppointments from '../Appointment/ViewAppointments';
 import ViewUsers from '../User/ViewUsers';
-import { UpdateAppointment } from '../Appointment/UpdateAppointment';
+import  UpdateAppointment  from '../Appointment/UpdateAppointment';
     export const Body = () => {
      return (
          <>

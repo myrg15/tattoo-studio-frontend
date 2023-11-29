@@ -87,7 +87,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
         top="50%"
         left="50%"
         sx={{ transform: "translate(-50%, -50%)" }}
-        padding="15px"
+        padding="20px"
         borderRadius="5px"
       >
         {message && <Typography color="green">{message}</Typography>}
@@ -95,7 +95,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
           component="form"
           display="flex"
           flexDirection="column"
-          gap="15px"
+          gap="50px"
           onSubmit={onSubmit}
           padding="5px"
         >

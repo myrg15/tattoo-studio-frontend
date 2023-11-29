@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Box, Button, FormControl, InputLabel, Select, MenuItem, Typography } from "@mui/material";
-import { updateAppointments, getAllArtist } from "../../services/apiCalls";
+import { getAllArtist } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 
-const AppointmentUpdate = ({ open, setOpen, idGallery, updAppoint }) => {
-  const [selectDate, setSelectDate] = useState(updAppoint.date);
-  const [selectHour, setSelectHour] = useState(updAppoint.time);
-  const [selectArtist, setSelectArtist] = useState(updAppoint.employees);
+ const UpdateAppointment = ({ open, setOpen, idGallery, updAppoint }) => {
+  const [selectDate, setSelectDate] = useState (""); //(updAppoint.date);
+  const [selectHour, setSelectHour] = useState (""); //(updAppoint.time);
+  const [selectArtist, setSelectArtist] = useState (""); //(updAppoint.employees);
   const [artist, setArtist] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -38,7 +38,7 @@ const AppointmentUpdate = ({ open, setOpen, idGallery, updAppoint }) => {
     };
 
     try {
-        await updateAppointments(updAppoint.appointmentId, data);
+        await UpdateAppointment(updAppoint.appointmentId, data);
         setMessage("Successfully updated appointment");
         setTimeout(() => {
           setMessage("");
@@ -130,4 +130,4 @@ const AppointmentUpdate = ({ open, setOpen, idGallery, updAppoint }) => {
       );
     };
 
-export default AppointmentUpdate;
+export default UpdateAppointment;
