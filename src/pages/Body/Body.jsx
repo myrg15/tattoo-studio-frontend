@@ -5,7 +5,7 @@ import  { Register }  from '../Register/Register';
 import  { Profile } from '../Profile/Profile';
 import ViewAppointments from '../Appointment/ViewAppointments';
 import ViewUsers from '../User/ViewUsers';
-import  UpdateAppointment  from '../Appointment/UpdateAppointment';
+//import  UpdateAppointment  from '../Appointment/UpdateAppointment';
     export const Body = () => {
      return (
          <>
@@ -18,8 +18,8 @@ import  UpdateAppointment  from '../Appointment/UpdateAppointment';
                 <Route path="/create-employee" element={<Register isCreateEmployee={true}/>} />
                 <Route path="/view-users" element={<ViewUsers />} />         
                 <Route path="/appointment" element={<ViewAppointments/>}/>
-                <Route path="/update-appointment" element={<UpdateAppointment/>}/>
-            </Routes>
+                {/*<Route path="/update-appointment" element={<UpdateAppointment/>}/>*/}
+             </Routes>
          </>
      )
 }

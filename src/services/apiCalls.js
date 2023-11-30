@@ -58,13 +58,13 @@ export const createAppointment = async (data) => {
   }
 };
 
-export const appointmentUpd = async (data) => {
+export const appointmentUpdate = async (data) => {
   const token = localStorage.getItem('token'); //getItem para recuperar el token de autenticación almacenado en el local storage
    console.log(token)
 
   try {
     const response = await axiosInstance.put( 
-     "/appointment/appointment_update/:id",
+     `/appointment/appointment_update/${data.id}`,
       data,
       {
         headers: {

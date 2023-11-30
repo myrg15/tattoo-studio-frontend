@@ -11,20 +11,34 @@ import {
 import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
-import { createAppointment, getAllArtist } from "../../services/apiCalls";
+import { appointmentUpdate, createAppointment, getAllArtist } from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 
-export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
+export const AppointmentCreate = ({ open, setOpen, idGallery, dataEdit, isEdit=false }) => {
   const navigate = useNavigate();
 
+
+  console.log(dataEdit)
+ 
   const [selectDate, setSelectDate] = useState(new Date());
-  const [selectHour, setSelectHour] = useState("");
-  const [selectArtist, setSelectArtist] = useState("");
+  const [selectHour, setSelectHour] = useState(dataEdit?.time);
+  const [selectArtist, setSelectArtist] = useState(dataEdit?.artist);
   const [artist, setArtist] = useState([]);
   const [date, setDate] = useState(new Date());
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+
+    if(isEdit  && dataEdit?.date){
+      setSelectDate( new Date(dataEdit?.date)?.toISOString()?.split('T')?.[0])
+      setSelectHour(dataEdit?.time)
+      setSelectArtist(dataEdit?.artist)
+    }
+    
+
+  }, [dataEdit])
 
  
   useEffect(() => {
@@ -51,6 +65,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
     e.preventDefault();
 
     const data = {
+      id: dataEdit.id,
       employees: selectArtist,
       date: date,
       time: selectHour,
@@ -59,6 +74,11 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
 
     try {
       console.log(data);
+
+      if(isEdit){
+        return await appointmentUpdate(data)
+      }
+
       await createAppointment(data);
       setMessage("Successfully created appointment");
       setTimeout(() => {
@@ -95,7 +115,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
           component="form"
           display="flex"
           flexDirection="column"
-          gap="50px"
+          gap="40px"
           onSubmit={onSubmit}
           padding="5px"
         >
@@ -103,7 +123,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery }) => {
             <InputLabel sx={{ bgcolor: "white" }}>Date</InputLabel>
             <input
               type="date"
-              value={date}
+              value={selectDate}
               onChange={handleDate}
               //disabled={modify}
             />
