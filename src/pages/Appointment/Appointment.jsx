@@ -11,36 +11,41 @@ import {
 import React, { useState, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
-import { appointmentUpdate, createAppointment, getAllArtist } from "../../services/apiCalls";
+import {
+  appointmentUpdate,
+  createAppointment,
+  getAllArtist,
+} from "../../services/apiCalls";
 import InputController from "../../common/Inputs/InputController";
+import { TryOutlined } from "@mui/icons-material";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 
-export const AppointmentCreate = ({ open, setOpen, idGallery, dataEdit, isEdit=false }) => {
+export const AppointmentCreate = ({
+  open,
+  setOpen,
+  idGallery,
+  dataEdit,
+  isEdit = false,
+}) => {
   const navigate = useNavigate();
-
-
-  console.log(dataEdit)
- 
+  //console.log(dataEdit)
   const [selectDate, setSelectDate] = useState(new Date());
-  const [selectHour, setSelectHour] = useState(dataEdit?.time);
-  const [selectArtist, setSelectArtist] = useState(dataEdit?.artist);
+  const [selectHour, setSelectHour] = useState(dataEdit?.time); //si dataEdit es nulo o indefinido, la variable selectHour se establecerá en nulo. De lo contrario, se establecerá en el valor de dataEdit.time
+  const [selectArtist, setSelectArtist] = useState(dataEdit?.artist); //resumo un if else con el uso del operador?
   const [artist, setArtist] = useState([]);
   const [date, setDate] = useState(new Date());
   const [message, setMessage] = useState("");
+  const [isCreateAppointment, setIsCreateAppointment] = useState(true)
 
   useEffect(() => {
-
-    if(isEdit  && dataEdit?.date){
-      setSelectDate( new Date(dataEdit?.date)?.toISOString()?.split('T')?.[0])
-      setSelectHour(dataEdit?.time)
-      setSelectArtist(dataEdit?.artist)
+    if (isEdit && dataEdit?.date) {
+      setSelectDate(new Date(dataEdit?.date)?.toISOString()?.split("T")?.[0]);
+      setSelectHour(dataEdit?.time);
+      setSelectArtist(dataEdit?.artist);
     }
-    
+  }, [dataEdit]);
 
-  }, [dataEdit])
-
- 
   useEffect(() => {
     const fetchData = async () => {
       const artist = await getAllArtist();
@@ -57,7 +62,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery, dataEdit, isEdit=f
   };
 
   const handleDate = (e) => {
-    setDate(e.target.value);
+    setSelectDate(e.target.value);
     //console.log("fecha");
   };
 
@@ -65,7 +70,7 @@ export const AppointmentCreate = ({ open, setOpen, idGallery, dataEdit, isEdit=f
     e.preventDefault();
 
     const data = {
-      id: dataEdit.id,
+      id: dataEdit?.id,
       employees: selectArtist,
       date: date,
       time: selectHour,
@@ -75,10 +80,19 @@ export const AppointmentCreate = ({ open, setOpen, idGallery, dataEdit, isEdit=f
     try {
       console.log(data);
 
-      if(isEdit){
-        return await appointmentUpdate(data)
+      if (isEdit) {
+        try {
+          await appointmentUpdate(data);
+          setTimeout(() => {
+            handleClose();
+          }, 4000);
+          return setMessage("Se Actualizo la cita correctamente");
+        } catch (err) {
+          return console.log(err);
+        }
       }
 
+      setIsCreateAppointment(false)
       await createAppointment(data);
       setMessage("Successfully created appointment");
       setTimeout(() => {
@@ -87,7 +101,8 @@ export const AppointmentCreate = ({ open, setOpen, idGallery, dataEdit, isEdit=f
         setSelectArtist("");
         setSelectDate(new Date());
         handleClose();
-      },8000);
+        setIsCreateAppointment(true)
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
@@ -150,9 +165,9 @@ export const AppointmentCreate = ({ open, setOpen, idGallery, dataEdit, isEdit=f
             >
               {HOURS_AVAILABLE.map((item) => (
                 //return (
-                  <MenuItem key={item} value={item}>
-                    {item}
-                  </MenuItem>
+                <MenuItem key={item} value={item}>
+                  {item}
+                </MenuItem>
                 //);
               ))}
             </Select>
@@ -173,14 +188,9 @@ export const AppointmentCreate = ({ open, setOpen, idGallery, dataEdit, isEdit=f
             </Select>
           </FormControl>
 
-          <Button type="submit" variant="contained">
+          {isCreateAppointment && <Button type="submit" variant="contained">
             Submit
-            </Button>
-          {message && (
-            <Button type="button" variant="contained" onClick={handleClose}>
-            Cerrar
-          </Button>
-          )}
+          </Button>}
         </Box>
       </Box>
     </Modal>

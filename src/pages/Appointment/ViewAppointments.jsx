@@ -38,7 +38,7 @@ const ViewAppointments = () => {
     setOpen(false);
   };
 
-  if (appointments.length === 0) {
+  if (appointments?.length === 0) {
     return (
       <Box
         height="100%"
