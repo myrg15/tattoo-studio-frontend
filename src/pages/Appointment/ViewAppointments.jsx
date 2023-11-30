@@ -80,6 +80,7 @@ const ViewAppointments = () => {
                   <Icon
                     icon="basil:edit-outline"
                     fontSize="25px"
+                    color="red"
                     cursor="pointer"
                     onClick={() => {
                       setData({
