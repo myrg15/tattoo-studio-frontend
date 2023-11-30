@@ -16,8 +16,8 @@ import {
   createAppointment,
   getAllArtist,
 } from "../../services/apiCalls";
-import InputController from "../../common/Inputs/InputController";
-import { TryOutlined } from "@mui/icons-material";
+//import InputController from "../../common/Inputs/InputController";
+//import { TryOutlined } from "@mui/icons-material";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 
@@ -32,7 +32,7 @@ export const AppointmentCreate = ({
   //console.log(dataEdit)
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectHour, setSelectHour] = useState(dataEdit?.time); //si dataEdit es nulo o indefinido, la variable selectHour se establecerá en nulo. De lo contrario, se establecerá en el valor de dataEdit.time
-  const [selectArtist, setSelectArtist] = useState(dataEdit?.artist); //resumo un if else con el uso del operador?
+  const [selectArtist, setSelectArtist] = useState(dataEdit?.artist);
   const [artist, setArtist] = useState([]);
   const [date, setDate] = useState(new Date());
   const [message, setMessage] = useState("");
@@ -86,9 +86,9 @@ export const AppointmentCreate = ({
           setTimeout(() => {
             handleClose();
           }, 4000);
-          return setMessage("Se Actualizo la cita correctamente");
-        } catch (err) {
-          return console.log(err);
+          return setMessage("Successfully updated appointment");
+        } catch (error) {
+          return console.log(error);
         }
       }
 

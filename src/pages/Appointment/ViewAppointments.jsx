@@ -91,14 +91,14 @@ const ViewAppointments = () => {
                       setOpen(true)}}
                   />
                 </Tooltip>
-                <Tooltip title="Delete">
+                {/*<Tooltip title="Delete">
                   <Icon
                     icon="fluent:delete-12-regular"
                     fontSize="25px"
                     color="red"
                     cursor="pointer"
                   />
-                </Tooltip>
+                    </Tooltip>*/}
               </Box>
             </Card>
           );
