@@ -33,6 +33,9 @@ SCHEDULE APPOINTMENT
 SUCCESSFULLY CREATED APPOINTMENT
 ![Successfully](./src/assets/imag/Successfully_Created_Appointment.JPG)
 
+SUCCESSFULLY UPDATED APPOINTMENT
+![Successfully](./src/assets/imag/edit_Appointment.JPG)
+
 PROFILE
 ![Profile](./src/assets/imag/Profile.JPG)
 
