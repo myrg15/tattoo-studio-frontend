@@ -16,8 +16,6 @@ import {
   createAppointment,
   getAllArtist,
 } from "../../services/apiCalls";
-//import InputController from "../../common/Inputs/InputController";
-//import { TryOutlined } from "@mui/icons-material";
 
 const HOURS_AVAILABLE = ["09:00", "12:00", "15:00", "18:00"];
 
@@ -29,7 +27,6 @@ export const AppointmentCreate = ({
   isEdit = false,
 }) => {
   const navigate = useNavigate();
-  //console.log(dataEdit)
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectHour, setSelectHour] = useState(dataEdit?.time); //si dataEdit es nulo o indefinido, la variable selectHour se establecerá en nulo. De lo contrario, se establecerá en el valor de dataEdit.time
   const [selectArtist, setSelectArtist] = useState(dataEdit?.artist);
@@ -63,7 +60,6 @@ export const AppointmentCreate = ({
 
   const handleDate = (e) => {
     setSelectDate(e.target.value);
-    //console.log("fecha");
   };
 
   const onSubmit = async (e) => {
@@ -140,35 +136,20 @@ export const AppointmentCreate = ({
               type="date"
               value={selectDate}
               onChange={handleDate}
-              //disabled={modify}
+             
             />
           </FormControl>
-
-          {/*<FormControl fullWidth>
-            <InputController
-              value={date}
-              type="date"
-              label="Date"
-              onChange={handleDate}
-            >
-              Date Available
-            </InputController>
-          </FormControl>*/}
-
           <FormControl fullWidth>
             <InputLabel sx={{ bgcolor: "white" }}>Hours Available</InputLabel>
             <Select
               fullWidth
               value={selectHour}
               onChange={(e) => setSelectHour(e.target.value)}
-              //disabled={modify}
             >
               {HOURS_AVAILABLE.map((item) => (
-                //return (
                 <MenuItem key={item} value={item}>
                   {item}
                 </MenuItem>
-                //);
               ))}
             </Select>
           </FormControl>
